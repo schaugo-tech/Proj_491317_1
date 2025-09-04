@@ -1,15 +1,8 @@
-streamlit
-pyvista
-numpy
-stpyvista
-panel
-bokeh
-vtk
-libgl1-mesa-glx
-libglib2.0-0
-libsm6
-libxrender1
-libxext6
-libgl1
-libegl1
-libgles2
+# 使用经过测试的稳定版本
+streamlit==1.28.0
+pyvista==0.38.5
+numpy==1.23.5
+stpyvista==0.0.5
+panel==1.2.0
+bokeh==2.4.3
+vtk==9.2.6
