@@ -112,11 +112,11 @@ def load_initial_model():
         initial_models = [
             {
                 "name": "Proj_491317_SP_model.stl",
-                "url": "https://raw.githubusercontent.com/schaugo-tech/Proj_491317_1/main/models/cube.stl"
+                "url": "https://raw.githubusercontent.com/schaugo-tech/Proj_491317_1/main/models/Proj_491317_SP_model.stl"
             },
             {
                 "name": "general_teeth_U.stl",
-                "url": "https://raw.githubusercontent.com/schaugo-tech/Proj_491317_1/main/models/sphere.stl"
+                "url": "https://raw.githubusercontent.com/schaugo-tech/Proj_491317_1/main/models/general_teeth_U.stl"
             }
         ]
 
