@@ -9,7 +9,8 @@ import uuid
 import json
 import base64
 from datetime import datetime
-
+import requests  # 新增
+from urllib.parse import urljoin  # 新增
 
 # 辅助函数定义
 def update_visibility(file_id):
@@ -103,6 +104,42 @@ def fit_to_view():
         st.session_state.camera_position = camera_position
         st.rerun()
 
+
+def load_initial_model():
+    """初始加载GitHub上的STL模型"""
+    try:
+        # 可以配置多个初始模型
+        initial_models = [
+            {
+                "name": "Proj_491317_SP_model.stl",
+                "url": "https://raw.githubusercontent.com/schaugo-tech/Proj_491317_1/main/models/cube.stl"
+            },
+            {
+                "name": "general_teeth_U.stl",
+                "url": "https://raw.githubusercontent.com/schaugo-tech/Proj_491317_1/main/models/sphere.stl"
+            }
+        ]
+
+        for model in initial_models:
+            response = requests.get(model["url"], timeout=10)
+            response.raise_for_status()
+
+            file_id = str(uuid.uuid4())
+            st.session_state.uploaded_files[file_id] = {
+                'name': model["name"],
+                'data': response.content,
+                'size': len(response.content),
+                'visible': True
+            }
+
+        st.session_state.file_processed = True
+        return True
+
+    except Exception as e:
+        st.warning(f"初始模型加载失败: {str(e)}")
+        return False
+
+
 # 页面配置
 st.set_page_config(
     page_title="多文件 STL 查看器",
@@ -115,6 +152,17 @@ if 'uploaded_files' not in st.session_state:
     st.session_state.uploaded_files = {}
 if 'file_processed' not in st.session_state:
     st.session_state.file_processed = False
+if 'reset_view' not in st.session_state:
+    st.session_state.reset_view = False
+if 'initial_load_done' not in st.session_state:  # 新增
+    st.session_state.initial_load_done = False
+
+# 初始加载GitHub模型（只在第一次运行时执行）
+if not st.session_state.initial_load_done and not st.session_state.uploaded_files:
+    with st.spinner("正在加载初始模型..."):
+        if load_initial_model():
+            st.session_state.initial_load_done = True
+            st.rerun()
 
 # 应用标题
 st.title("🧊 多文件 STL 查看器")
