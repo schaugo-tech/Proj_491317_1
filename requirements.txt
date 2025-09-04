@@ -2,3 +2,5 @@ streamlit
 pyvista
 numpy
 stpyvista
+panel
+bokeh
