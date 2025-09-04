@@ -142,7 +142,7 @@ def load_initial_model():
 
 # 页面配置
 st.set_page_config(
-    page_title="洲歌科技——模型可视化协作工具"",
+    page_title="洲歌科技——模型可视化协作工具",
     page_icon="🧊",
     layout="wide",
 )
@@ -425,6 +425,7 @@ with col3:
 st.markdown("---")
 st.markdown(
     "使用 [Streamlit](https://streamlit.io), [PyVista](https://www.pyvista.org/) 和 [stpyvista](https://github.com/arnaudmiribel/stpyvista) 构建")
+
 
 
 
