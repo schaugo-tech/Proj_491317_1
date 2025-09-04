@@ -4,3 +4,4 @@ numpy
 stpyvista
 panel
 bokeh
+vtk
