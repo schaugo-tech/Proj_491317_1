@@ -242,7 +242,7 @@ with col2:
     # 3D 渲染区域
     if st.session_state.uploaded_files:
         with st.spinner("加载和渲染模型中..."):
-            plotter = pv.Plotter(window_size=[800, 600])
+            plotter = pv.Plotter(window_size=[800, 600], off_screen=True)
             # 如果有保存的相机位置，就应用它
             if 'camera_position' in st.session_state and st.session_state.camera_position:
                 plotter.camera_position = st.session_state.camera_position
@@ -425,4 +425,5 @@ with col3:
 st.markdown("---")
 st.markdown(
     "使用 [Streamlit](https://streamlit.io), [PyVista](https://www.pyvista.org/) 和 [stpyvista](https://github.com/arnaudmiribel/stpyvista) 构建")
+
 
