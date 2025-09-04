@@ -165,7 +165,7 @@ if not st.session_state.initial_load_done and not st.session_state.uploaded_file
             st.rerun()
 
 # 应用标题
-st.title("🧊 多文件 STL 查看器")
+st.title("🧊 洲歌科技——模型可视化协作工具")
 st.markdown("上传多个STL文件，选择显示或隐藏特定文件，支持保存和分享会话")
 
 # 创建三列布局
@@ -268,12 +268,29 @@ with col2:
                         if len(short_name) > 20:
                             short_name = short_name[:17] + "..."
 
+                        ## plotter.add_mesh(
+                        ##     mesh,
+                        ##     color=color,
+                        ##     show_edges=True,
+                        ##     smooth_shading=True,
+                        ##     label=short_name
+                        ## )
                         plotter.add_mesh(
                             mesh,
                             color=color,
-                            show_edges=True,
-                            smooth_shading=True,
-                            label=short_name
+                            style='surface',  # 表面渲染
+                            lighting=True,  # 启用光照
+                            show_edges=False,  # 显示边缘
+                            edge_color='black',  # 边缘颜色
+                            line_width=1.5,  # 边缘线宽
+                            smooth_shading=True,  # 平滑着色
+                            specular=0.3,  # 高光强度
+                            diffuse=0.7,  # 漫反射
+                            ambient=0.2,  # 环境光
+                            metallic=0.1,  # 金属质感
+                            roughness=0.8,  # 粗糙度
+                            interpolate_before_map=True,  # 预插值提高质量
+                            label = short_name
                         )
 
                         legend_labels.append(short_name)
@@ -294,7 +311,7 @@ with col2:
                 stpyvista(plotter, key="pv_plotter")
 
                 # 统计信息
-                st.subheader("场景统计")
+                st.subheader("场景统计（建设中）")
                 col_stat1, col_stat2, col_stat3 = st.columns(3)
                 with col_stat1:
                     st.metric("可见文件数", visible_count)
@@ -338,7 +355,7 @@ with col2:
 
 with col3:
     # 保存和分享功能
-    st.subheader("保存与分享")
+    st.subheader("保存与分享（建设中）")
 
     if st.session_state.uploaded_files:
         # 保存会话
@@ -355,7 +372,7 @@ with col3:
         st.markdown("---")
 
         # 加载会话
-        st.subheader("加载会话")
+        st.subheader("加载会话（建设中）")
         uploaded_session = st.file_uploader(
             "上传会话文件",
             type=['json'],
@@ -390,7 +407,7 @@ with col3:
     # 生成分享链接
     if st.session_state.uploaded_files:
         st.markdown("---")
-        st.subheader("🔗 快速分享")
+        st.subheader("🔗 快速分享（建设中）")
         st.info("保存会话文件后，可以发送给其他人加载查看")
 
 # 页脚
