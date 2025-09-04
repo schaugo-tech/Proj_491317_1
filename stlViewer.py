@@ -246,7 +246,18 @@ with col2:
             # 如果有保存的相机位置，就应用它
             if 'camera_position' in st.session_state and st.session_state.camera_position:
                 plotter.camera_position = st.session_state.camera_position
-            colors = ['red', 'green', 'blue', 'yellow', 'cyan', 'magenta', 'white', 'orange']
+            colors = [
+                '#D8E2DC',  # 灰粉色
+                '#FFE5D9',  # 浅珊瑚色
+                '#FEC89A',  # 浅杏色
+                '#F9DCC4',  # 淡米色
+                '#E8E8E4',  # 浅灰色
+                '#D6E2E9',  # 灰蓝色
+                '#EFD3D7',  # 淡紫粉色
+                '#F2E8CF',  # 淡卡其色
+                '#DDE5B6',  # 淡橄榄绿
+                '#E0C3A0'  # 浅驼色
+            ]
             color_idx = 0
             visible_count = 0
             legend_labels = []
@@ -414,3 +425,4 @@ with col3:
 st.markdown("---")
 st.markdown(
     "使用 [Streamlit](https://streamlit.io), [PyVista](https://www.pyvista.org/) 和 [stpyvista](https://github.com/arnaudmiribel/stpyvista) 构建")
+
